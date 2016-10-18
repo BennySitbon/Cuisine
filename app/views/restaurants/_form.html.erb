@@ -1,0 +1,67 @@
+<%= form_for(@restaurant) do |f| %>
+  <% unless @restaurant.address %>
+      <% @restaurant.address = Address.new  %>
+  <% end  %>
+
+  <% if @restaurant.errors.any? or @restaurant.address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@restaurant.errors.count + @restaurant.address.errors.count,
+                        "error") %> prohibited this restaurant from being saved:</h2>
+
+      <ul>
+      <% @restaurant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      <% @restaurant.address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cuisine %>
+    <%= f.select :cuisine, Restaurant.cuisines,
+              prompt: 'Select a cuisine'%>
+  </div>
+  <div class="field">
+    <%= f.fields_for @restaurant.address do |a| %>
+        <div style="float:left">
+          <%= a.label :house_number %>
+          <%= a.number_field :house_number %>
+        </div>
+        <div style="float:left">
+          <%= a.label :street %>
+          <%= a.text_field :street %>
+        </div>
+        <div>
+          <%= a.label :city %>
+          <%= a.text_field :city %>
+        </div>
+    <% end  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.number_field :rating %>
+  </div>
+
+  <div class="field">
+    <%= f.label :accepts_10bis %>
+    <%= f.check_box :accepts_10bis %>
+  </div>
+
+  <div class="field">
+    <%= f.label :max_delivery_time %>
+    <%= f.number_field :max_delivery_time %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
