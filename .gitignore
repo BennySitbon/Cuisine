@@ -21,4 +21,4 @@
 .byebug_history
 
 # Ignore RubyMine's workspace stuff
-.idea/workspace.xml
+.idea/
