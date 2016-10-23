@@ -8,7 +8,7 @@ class Restaurant extends React.Component {
   }
   render(){
     return (
-      <table>
+      <table className="restaurant">
         <tbody>
         <tr>
           <th rowSpan="4">{this.state.restaurant.cuisine}</th>
@@ -19,6 +19,9 @@ class Restaurant extends React.Component {
         </tr>
         <tr>
           <td colSpan="2" className="restaurant-rating">Rating:{this.state.restaurant.rating}</td>
+        </tr>
+        <tr>
+          <td colSpan="2">Max delivery: {this.state.restaurant.max_delivery_time} Minutes</td>
         </tr>
         </tbody>
       </table>
