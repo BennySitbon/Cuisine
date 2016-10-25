@@ -5,9 +5,28 @@
 .restaurant{
   border: 1px solid black;
   margin-bottom: 20px;
+  width:100%;
+  background-color: white;
 }
 
 .filter{
-  display: inline-block;
-  margin: 10px;
+  display: inline-flex;
+  margin: 20px;
+  border: 1px solid grey;
+  padding: 5px;
+  background-color: white;
+}
+
+#restaurant-list{
+  width: 40%;
+  float: left;
+  height: 100%;
+}
+
+#map{
+  width: 40%;
+  border: 1px solid black;
+  height: 100%;
+  float: left;
+  margin-top: 35px;
 }
