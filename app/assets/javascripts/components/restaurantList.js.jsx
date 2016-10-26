@@ -7,8 +7,15 @@ class RestaurantList extends React.Component {
       filterNameContains: '',
       filterMaxDelivery: 200,
       filter10Bis: false,
-      filterRating: 0
+      filterRating: 0,
+      filterCuisine: null,
+      filterAvailableCuisines: this.GetCuisineTypes(props.restaurants)
     }
+  }
+  GetCuisineTypes(restaurants){
+    return Array.from(new Set(restaurants.map(function(restaurant){
+      return restaurant.cuisine_type.name
+    })));
   }
   componentDidMount() {
     this.setState({filterMaxDelivery: this.getMaxDelivery()});
@@ -22,7 +29,8 @@ class RestaurantList extends React.Component {
       return (restaurant.name.toLowerCase().includes(state.filterNameContains.toLowerCase()))
         && (restaurant.max_delivery_time <= state.filterMaxDelivery)
         && (state.filter10Bis ? restaurant.accepts_10bis === state.filter10Bis : true)
-        && (restaurant.rating >= state.filterRating);
+        && (restaurant.rating >= state.filterRating)
+        && (state.filterCuisine ? restaurant.cuisine_type.name === state.filterCuisine : true);
     });
     this.setState({restaurants: newRestaurantList})
   }
@@ -35,13 +43,22 @@ class RestaurantList extends React.Component {
   handleRatingChange(e) {
     this.setState({filterRating: e.target.value}, this.filterRestaurants)
   }
+  handleCuisineChange(e) {
+    if(e.target.value === "All"){
+      this.setState({filterCuisine: null}, this.filterRestaurants)
+    } else {
+      this.setState({filterCuisine: e.target.value}, this.filterRestaurants)
+    }
+  }
   getMinDelivery() {
     return Math.min
-      .apply(Math, this.props.restaurants.map(function (r) {return r.max_delivery_time}))
+      .apply(Math, this.props.restaurants
+        .map(function (r) {return r.max_delivery_time}))
   }
-  getMaxDelivery(){
+  getMaxDelivery() {
     return Math.max
-      .apply(Math, this.props.restaurants.map(function (r) {return r.max_delivery_time}))
+      .apply(Math, this.props.restaurants
+        .map(function (r) {return r.max_delivery_time}))
   }
   render () {
     restaurantList = this.state.restaurants.map( function(restaurant){
@@ -55,6 +72,14 @@ class RestaurantList extends React.Component {
           <span>Filter Results:</span>
           <input type="text" placeholder="Filter by name"
                    onChange={this.handleNameFilterChanged.bind(this)} className="filter"/>
+          <select onChange={this.handleCuisineChange.bind(this)} className="filter">
+            <option value="All">Select a cuisine</option>
+            {
+              this.state.filterAvailableCuisines.map(function (cuisine){
+                return <option key={cuisine} value={cuisine}>{cuisine}</option>
+              })
+            }
+          </select>
           <div className="filter">
             <label>Rating: {this.state.filterRating}+ stars</label>
             <input type="range" value={this.state.filterRating} min={0} max={3}
@@ -66,8 +91,9 @@ class RestaurantList extends React.Component {
                    onChange={this.handleMaxDeliveryChange.bind(this)}/>
           </div>
           <div className="filter">
-            <label>Only 10Bis?</label>
-            <input type="checkbox" checked={this.state.filter10Bis} onChange={this.handle10BisChange.bind(this)}/>
+            <label>Only 10Bis?
+              <input type="checkbox" checked={this.state.filter10Bis} onChange={this.handle10BisChange.bind(this)}/>
+            </label>
           </div>
           <br />
         </div>
