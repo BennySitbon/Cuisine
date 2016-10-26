@@ -19,7 +19,7 @@ class Restaurant extends React.Component {
   }
   CreateStarString() {
     var stars = "";
-    for (var i=0; i<this.state.restaurant.rating ; i++) {
+    for (var i=0; i<this.state.restaurant.rating; i++) {
       stars += "⭐";//This string may seem empty in some encodings. It has a star symbol.
     }
     return stars;
