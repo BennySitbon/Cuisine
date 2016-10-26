@@ -11,6 +11,7 @@ class RestaurantList extends React.Component {
       filterCuisine: null,
       filterAvailableCuisines: this.GetCuisineTypes(props.restaurants)
     }
+    this.allCuisines = "Select a cuisine";
   }
   GetCuisineTypes(restaurants){
     return Array.from(new Set(restaurants.map(function(restaurant){
@@ -44,7 +45,7 @@ class RestaurantList extends React.Component {
     this.setState({filterRating: e.target.value}, this.filterRestaurants)
   }
   handleCuisineChange(e) {
-    if(e.target.value === "All"){
+    if(e.target.value === this.allCuisines){
       this.setState({filterCuisine: null}, this.filterRestaurants)
     } else {
       this.setState({filterCuisine: e.target.value}, this.filterRestaurants)
@@ -73,7 +74,7 @@ class RestaurantList extends React.Component {
           <input type="text" placeholder="Filter by name"
                    onChange={this.handleNameFilterChanged.bind(this)} className="filter"/>
           <select onChange={this.handleCuisineChange.bind(this)} className="filter">
-            <option value="All">Select a cuisine</option>
+            <option value={this.allCuisines}>{this.allCuisines}</option>
             {
               this.state.filterAvailableCuisines.map(function (cuisine){
                 return <option key={cuisine} value={cuisine}>{cuisine}</option>
