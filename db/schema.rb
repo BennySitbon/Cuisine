@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018091324) do
+ActiveRecord::Schema.define(version: 20161025143748) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "house_number"
@@ -18,6 +18,13 @@ ActiveRecord::Schema.define(version: 20161018091324) do
     t.string   "city"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "cuisine_types", force: :cascade do |t|
+    t.string   "name"
+    t.string   "font_letter", limit: 1
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -29,7 +36,9 @@ ActiveRecord::Schema.define(version: 20161018091324) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.integer  "address_id"
+    t.integer  "cuisine_type_id"
     t.index ["address_id"], name: "index_restaurants_on_address_id"
+    t.index ["cuisine_type_id"], name: "index_restaurants_on_cuisine_type_id"
   end
 
 end
