@@ -21,6 +21,7 @@
 .byebug_history
 
 # Ignore RubyMine's workspace stuff
-.idea/
+.idea/workspace.xml
+.idea/tasks.xml
 
 .DS_Store
