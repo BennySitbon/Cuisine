@@ -24,7 +24,6 @@ class RestaurantsController < ApplicationController
   # POST /restaurants
   # POST /restaurants.json
   def create
-
     @restaurant = Restaurant.new(restaurant_params)
     @restaurant.address = get_address_from_attributes
 

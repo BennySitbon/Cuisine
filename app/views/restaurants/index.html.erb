@@ -1,1 +1,2 @@
-<%= react_component 'App', {restaurants: @restaurants} %>
+<%= react_component 'App',
+          {restaurants: @restaurants.as_json(include: [:address, :cuisine_type])} %>
