@@ -1,2 +1,4 @@
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo">
+</script>
 <%= react_component 'App',
           {restaurants: @restaurants.as_json(include: [:address, :cuisine_type])} %>

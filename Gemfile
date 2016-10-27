@@ -48,3 +48,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #Install react for rails
 gem 'react-rails'
+#geocoding service
+gem  'geocoder'
