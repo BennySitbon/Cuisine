@@ -71,8 +71,8 @@ class RestaurantList extends React.Component {
       zoom: 10,
       center: addresses[0]
     });
-    addresses.map(function (address){
-      return new google.maps.Marker({
+    addresses.forEach(function (address){
+       new google.maps.Marker({
         position: address,
         map: map
       });
