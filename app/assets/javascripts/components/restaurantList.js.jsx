@@ -12,6 +12,7 @@ class RestaurantList extends React.Component {
       filterAvailableCuisines: this.GetCuisineTypes(props.restaurants)
     }
     this.allCuisines = "Select a cuisine";
+
   }
   GetCuisineTypes(restaurants){
     return Array.from(new Set(restaurants.map(function(restaurant){
@@ -20,6 +21,7 @@ class RestaurantList extends React.Component {
   }
   componentDidMount() {
     this.setState({filterMaxDelivery: this.getMaxDelivery()});
+    this.InitMap();
   }
   handleNameFilterChanged(e) {
     this.setState({filterNameContains: e.target.value},this.filterRestaurants);
@@ -60,6 +62,21 @@ class RestaurantList extends React.Component {
     return Math.max
       .apply(Math, this.props.restaurants
         .map(function (r) {return r.max_delivery_time}))
+  }
+  InitMap() {
+    var addresses = this.props.restaurants.map(function (restaurant){
+      return {lat:restaurant.address.latitude, lng: restaurant.address.longitude};
+    });
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: addresses[0]
+    });
+    addresses.map(function (address){
+      return new google.maps.Marker({
+        position: address,
+        map: map
+      });
+    });
   }
   render () {
     restaurantList = this.state.restaurants.map( function(restaurant){
