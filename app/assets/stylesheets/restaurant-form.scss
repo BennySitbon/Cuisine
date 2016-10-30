@@ -1,0 +1,43 @@
+
+
+#restaurant-form {
+  width: 50%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 10px 20px;
+
+  h2{
+    text-align: center;
+  }
+  .form-label {
+    display: block;
+    text-align: center;
+  }
+  .form-control {
+    display: block;
+    width: 60%;
+    margin: 0px auto 10px;
+  }
+  .control-info {
+    margin: 20px;
+  }
+  .address-field {
+    display: inline-block;
+    width: 150px;
+    text-align: center;
+    margin: auto;
+    .form-control{
+      width: 100%;
+    }
+  }
+  .submit-button {
+    width:60%;
+    text-align: center;
+    margin: 20px auto;
+    display: block;
+    background-color: #DAC229;
+    color:white;
+    padding: 15px;
+    font-size: 20px;
+  }
+}

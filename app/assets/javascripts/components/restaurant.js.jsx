@@ -5,11 +5,12 @@ class Restaurant extends React.Component {
       restaurant: props.restaurant
     }
   }
-  CreateStarString() {
+  static CreateStarString(rating) {
     var stars = "";
-    for (var i=0; i<this.state.restaurant.rating ; i++) {
+    for (var i=0; i<rating ; i++) {
       stars += "\u2b50";
     }
+    console.log(rating);
     return stars;
   }
   render() {
@@ -21,11 +22,12 @@ class Restaurant extends React.Component {
         </tr>
         <tr>
           <td className="restaurant-title">{this.state.restaurant.name}  {this.state.restaurant.accepts_10bis &&
-                <img src="assets/10bis_icon.png"/>}
+                <img src="/assets/10bis_icon.png"/>}
           </td>
         </tr>
         <tr>
-          <td colSpan="2" className="restaurant-rating">Rating:{this.CreateStarString()}</td>
+          <td colSpan="2" className="restaurant-rating">
+            Rating:{Restaurant.CreateStarString(this.state.restaurant.rating)}</td>
         </tr>
         <tr>
           <td colSpan="2">Max delivery: {this.state.restaurant.max_delivery_time} Minutes</td>
