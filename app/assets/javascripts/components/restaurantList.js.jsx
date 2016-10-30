@@ -12,7 +12,6 @@ class RestaurantList extends React.Component {
       filterAvailableCuisines: this.GetCuisineTypes(props.restaurants)
     }
     this.allCuisines = "Select a cuisine";
-
   }
   GetCuisineTypes(restaurants){
     return Array.from(new Set(restaurants.map(function(restaurant){
