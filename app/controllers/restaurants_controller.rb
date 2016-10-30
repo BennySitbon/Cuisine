@@ -15,6 +15,8 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
+    @restaurant.cuisine_type = CuisineType.new
+    @restaurant.address = Address.new
   end
 
   # GET /restaurants/1/edit
@@ -29,7 +31,7 @@ class RestaurantsController < ApplicationController
 
     respond_to do |format|
       if @restaurant.save
-        format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Restaurant was successfully created.' }
         format.json { render :show, status: :created, location: @restaurant }
       else
         format.html { render :new }
@@ -70,7 +72,7 @@ class RestaurantsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def restaurant_params
-    params.require(:restaurant).permit(:name, :cuisine, :rating,
+    params.require(:restaurant).permit(:name, :cuisine_type_id, :rating,
                                        :accepts_10bis, :max_delivery_time)
   end
 
