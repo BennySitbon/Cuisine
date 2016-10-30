@@ -1,0 +1,15 @@
+.error-list{
+  list-style: none;
+  padding-left: 0;
+  .error-item{
+    font-weight: bold;
+    color: red;
+    padding-top: 10px;
+    animation: fadein 1s;
+  }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
