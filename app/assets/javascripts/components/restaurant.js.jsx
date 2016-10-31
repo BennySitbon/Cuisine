@@ -10,7 +10,6 @@ class Restaurant extends React.Component {
     for (var i=0; i<rating ; i++) {
       stars += "\u2b50";
     }
-    console.log(rating);
     return stars;
   }
   render() {
