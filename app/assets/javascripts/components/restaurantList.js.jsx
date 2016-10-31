@@ -78,9 +78,11 @@ class RestaurantList extends React.Component {
     });
   }
   render () {
+    icon_url_10bis = this.props.icon_url_10bis;
     restaurantList = this.state.restaurants.map( function(restaurant){
       return (
-        <Restaurant restaurant={restaurant} key={restaurant.id}/>
+        <Restaurant restaurant={restaurant} key={restaurant.id}
+                    icon_url_10bis={icon_url_10bis}/>
       );
     });
     return (

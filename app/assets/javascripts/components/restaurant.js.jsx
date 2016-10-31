@@ -22,7 +22,7 @@ class Restaurant extends React.Component {
         </tr>
         <tr>
           <td className="restaurant-title">{this.state.restaurant.name}  {this.state.restaurant.accepts_10bis &&
-                <img src="/assets/10bis_icon.png"/>}
+                <img src={this.props.icon_url_10bis}/>}
           </td>
         </tr>
         <tr>

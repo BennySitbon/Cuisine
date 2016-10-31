@@ -1,4 +1,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo">
 </script>
 <%= react_component 'App',
-          {restaurants: @restaurants.as_json(include: [:address, :cuisine_type])} %>
+          {
+              restaurants: @restaurants.as_json(include: [:address, :cuisine_type]),
+              icon_url_10bis: image_url("10bis_icon.png"),
+              icon_url_top: image_url("top.png"),
+              icon_url_plus_button: image_url("plus_button.png")
+          } %>
