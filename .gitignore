@@ -22,5 +22,5 @@
 
 # Ignore RubyMine's workspace stuff
 .idea/
-
+/app/public/assets
 .DS_Store
