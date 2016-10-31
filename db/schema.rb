@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20161026141409) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "addresses", force: :cascade do |t|
     t.integer  "house_number"
     t.string   "street"
@@ -39,8 +42,10 @@ ActiveRecord::Schema.define(version: 20161026141409) do
     t.datetime "updated_at",        null: false
     t.integer  "address_id"
     t.integer  "cuisine_type_id"
-    t.index ["address_id"], name: "index_restaurants_on_address_id"
-    t.index ["cuisine_type_id"], name: "index_restaurants_on_cuisine_type_id"
+    t.index ["address_id"], name: "index_restaurants_on_address_id", using: :btree
+    t.index ["cuisine_type_id"], name: "index_restaurants_on_cuisine_type_id", using: :btree
   end
 
+  add_foreign_key "restaurants", "addresses"
+  add_foreign_key "restaurants", "cuisine_types"
 end
